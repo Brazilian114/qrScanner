@@ -65,7 +65,7 @@ export class HomePage {
       alert(JSON.stringify(response2))
       return true;
     });
-    const mediaStream = await navigator.mediaDevices.getUserMedia({video: true});
+    const mediaStream = await navigator.mediaDevices.getUserMedia({video: { facingMode: 'environment' }});
     this.videoElement.srcObject = mediaStream;
     // Required for Safari
     this.videoElement.setAttribute('playsinline', true);

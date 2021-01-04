@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Setting</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input type="text" placeholder="URL" [(ngModel)]="oURL" ></ion-input>
+      </ion-col>
+      <!--<ion-col hidden ="TRUE">
+        <ion-item>
+          <ion-label>URL</ion-label>
+          <ion-select [(ngModel)]="oURL" dir="ltr" interface="popover" style="max-width: 100%;">    
+            <ion-option value="192.168.1.104">192.168.1.104</ion-option>
+            <ion-option value="192.168.1.225">192.168.1.225</ion-option>
+            <ion-option value="192.168.1.166">192.168.1.166</ion-option>
+            <ion-option value="192.168.1.92">192.168.1.92</ion-option>
+            <ion-option value="192.168.5.11">192.168.5.11</ion-option>
+            <ion-option value="192.168.1.79">192.168.1.79</ion-option>
+            <ion-option value="192.168.1.107">192.168.1.107</ion-option>
+          </ion-select>
+        </ion-item> -->
+        <!-- <ion-input placeholder="192.168.1.1" [(ngModel)]="oURL"></ion-input> -->
+      <!-- </ion-col> -->
+      <ion-col size="2">
+        <ion-button ion-button block (click)="doURL(oURL)">SAVE</ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button ion-button block color="light" (click)="doClearURL()">CLEAR</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<ion-footer>
+  <ion-button style="align-items: right;" ion-button clear (click)="dismiss()">
+    CLOSE
+  </ion-button>
+</ion-footer>

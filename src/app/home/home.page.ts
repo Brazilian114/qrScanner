@@ -59,10 +59,10 @@ export class HomePage {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: 'environment' }
     }).catch((error)=>{
-      alert(JSON.stringify(error))
+      //alert(JSON.stringify(error))
     }).then(response2 => {
       // ... do something
-      alert(JSON.stringify(response2))
+      //alert(JSON.stringify(response2))
       return true;
     });
     const mediaStream = await navigator.mediaDevices.getUserMedia({video: { facingMode: 'environment' }});

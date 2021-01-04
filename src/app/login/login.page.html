@@ -1,0 +1,38 @@
+<ion-content>
+  <div style="margin-top: 100%">
+    <!-- <ion-card>
+      <img src="{{img}}" />
+    </ion-card> -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input type="text" placeholder="Username" #focusInputUsername [(ngModel)]="oUsername"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-input type="password" placeholder="Password" #focusInputPassword [(ngModel)]="oPassword"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+    <br/>
+    <ion-row>
+      <ion-col style="text-align:center">
+        <ion-col col-auto>
+            <ion-button ion-button (click)="getData(oUsername, oPassword)">LOGIN</ion-button>
+        </ion-col>
+        <ion-col col-auto>
+            <ion-button ion-button (click)="presentModal()">
+              <ion-icon name="settings-outline" ></ion-icon>
+            </ion-button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  <br/>
+  
+  </ion-content>
+  <ion-footer>
+      <ion-label style="text-align: right; color: #000000">Version 0.0.1</ion-label>
+  </ion-footer>
+  

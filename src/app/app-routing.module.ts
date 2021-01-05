@@ -18,6 +18,22 @@ const routes: Routes = [
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
   },
+  {
+    path: 'usabillity',
+    loadChildren: () => import('./usabillity/usabillity.module').then( m => m.UsabillityPageModule)
+  },
+  {
+    path: 'factory',
+    loadChildren: () => import('./factory/factory.module').then( m => m.FactoryPageModule)
+  },
+  {
+    path: 'warehousetask',
+    loadChildren: () => import('./warehousetask/warehousetask.module').then( m => m.WarehousetaskPageModule)
+  },
+  {
+    path: 'operation',
+    loadChildren: () => import('./operation/operation.module').then( m => m.OperationPageModule)
+  },
 
 
 ];

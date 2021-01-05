@@ -1,6 +1,6 @@
-.scroll-y {
-  touch-action: pan-y;
-  overflow-y: var(--overflow);
-  overscroll-behavior-y: contain;
-  background-color: bisque;
+ion-content {
+  --background: url('../../assets/imgs/login-img.jpg') 0 0/100% 100% no-repeat;
+  --background-repeat: no-repeat;
+  --background-size:cover;
+  --margin-top: 30px;
 }

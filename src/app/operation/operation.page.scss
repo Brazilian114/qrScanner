@@ -1,0 +1,30 @@
+.col{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  [col-1] {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 8.33333%;
+    -ms-flex: 0 0 8.33333%;
+    flex: 0 0 8.33333%;
+    width: 41.33333%;
+    max-width: 24.33333%;
+}
+
+  ion-icon{
+    font-size: 30px;
+  }
+  .paddingLeft{
+    padding-left: 17px;
+  }
+  ion-img{
+    background-color: #FFFFFF;
+  }
+  .card-title-md{
+    font-size: 18px;
+  }
+  .card-content-md {
+    padding: 2px 3px;
+    font-size: 1.4rem;
+    line-height: 0;
+  }

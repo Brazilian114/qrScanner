@@ -1,0 +1,507 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- <ion-button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </ion-button> -->
+    <ion-title>บันทึกการใช้งาน</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div [ngSwitch]="Check">
+
+    <ion-list *ngSwitchCase="'Header'">
+        <ion-grid>
+          <ion-row>
+            <ion-col size=3>
+              <ion-button ion-button expand="block" >Client</ion-button>
+            </ion-col>
+            <ion-col size=2>
+              <ion-input [(ngModel)]="oClient" readonly></ion-input>
+            </ion-col>
+            <ion-col>
+              <!-- <ion-button ion-button expand="block" (click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)">R#</ion-button> -->
+              <ion-button ion-button expand="block" (click)="gotoBarcodeScanner()">R#</ion-button>
+            </ion-col>
+            <ion-col size=5>
+              <ion-input placeholder="R#" [(ngModel)]="oHanel_no" readonly></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <!-- <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'book' | translate }}</ion-label>
+                <ion-select [(ngModel)]="listBook" interface="popover" disabled>
+                  <ion-option *ngFor = "let book of data_book" value="{{book.QCBOOK}}">{{book.FMDESC}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col> -->
+            <!-- <ion-col>
+              <ion-label stacked style="margin: 0px 0px 0px 0;">{{'date' | translate }}</ion-label>
+          
+              <ion-input style="border: none;border-bottom-color:none"(click)="doCalendar()" [(ngModel)]="oDate" readonly></ion-input>
+            </ion-col> -->
+          </ion-row>
+          <!-- <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'warehouse' | translate }}</ion-label>
+                <ion-select [(ngModel)]="listWhses" interface="popover" (ionChange)="doGetStation(listWhses)">
+                  <ion-option  *ngFor = "let warehouse of data_warehouse" value="{{warehouse.Warehouse}}">{{warehouse.Description}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'station' | translate }}</ion-label>
+                <ion-select [(ngModel)]="listStation" interface="popover">
+                  <ion-option *ngFor = "let station of data_station" value="{{station.station}}">{{station.station}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row> -->
+          <!-- <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'zone' | translate }}</ion-label>
+                <ion-select [(ngModel)]="listZone" interface="popover">
+                  <ion-option *ngFor = "let zone of data_zone" value="{{zone.Zone}}">{{zone.Description}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'type' | translate }}</ion-label>
+                <ion-select [(ngModel)]="listType" interface="popover" disabled ="{{isEnabled}}">
+                  <ion-option value="RETURN" [selected]="true">RETURN</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row> -->
+          <ion-row>
+            <ion-col size=3>
+              <ion-button ion-button expand="block" (click)="doDocrefPage()">DOC REF</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-input placeholder="DOC REF" [(ngModel)]="oReferent_no" (click)="doClick()" (keyup.enter)="doGetBranchReturn_Header(oClient, oCustomer_Header, oDocref)"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">Department</ion-label>
+                <ion-select [(ngModel)]="listdepart" interface="popover">
+                  <ion-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          <!-- </ion-row>
+          <ion-row> -->
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">Engine</ion-label>
+                <ion-select [(ngModel)]="listengine" interface="popover">
+                  <ion-option *ngFor = "let engine of data_engine" value="{{engine.param_code}}">{{engine.param_desc}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <!-- <ion-col size=2>
+              <ion-label>Department</ion-label>
+            </ion-col>
+            <ion-col >
+              <ion-input [(ngModel)]="oDepartment_name" style="background-color: #FFFF99" readonly></ion-input>
+            </ion-col> -->
+          </ion-row>
+          <ion-row>
+            <ion-col size=3>
+              <ion-label>Remark</ion-label>
+            </ion-col>
+            <ion-col > 
+              <ion-input placeholder="Remark" [(ngModel)]="oRemark" ></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label stacked style="margin: 0px 0px 0px 0;">Date</ion-label>
+          
+              <!-- <ion-input style="border: none;border-bottom-color:none"(click)="doCalendar()" [(ngModel)]="oDate" readonly></ion-input> -->
+              <ion-datetime [(ngModel)]="oDate" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD"></ion-datetime>
+            </ion-col>
+           
+              <ion-col size=auto>
+                <ion-label>Status</ion-label>
+              </ion-col>
+              <ion-col size=4> 
+                <ion-input placeholder="Status" [(ngModel)]="oStatus" style="background-color: #FFFF99" readonly></ion-input>
+              </ion-col>
+         
+          </ion-row>
+         
+          <ion-row radio-group [(ngModel)]="oType">
+            <ion-col>
+              <ion-item>  
+                <ion-label>เก็บเข้าตู้</ion-label>
+                <ion-radio value="Y"></ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+               <ion-label>ไม่จัดเก็บเข้าตู้</ion-label>
+                <ion-radio value="N"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <!-- <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked style="margin: 0px 0px 0px 0;">Department</ion-label>
+                <ion-select [(ngModel)]="listdepart" interface="popover">
+                  <ion-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size=2>
+              <ion-label>Department</ion-label>
+            </ion-col>
+            <ion-col >
+              <ion-input [(ngModel)]="oDepartment_name" style="background-color: #FFFF99" readonly></ion-input>
+            </ion-col>
+  
+
+            <ion-col size=auto>
+              <ion-label>{{'status' | translate }}</ion-label>
+            </ion-col>
+            <ion-col size=4> 
+              <ion-input placeholder="{{'status' | translate }}" [(ngModel)]="oStatus" style="background-color: #FFFF99" readonly></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+        <br/>
+          <ion-grid>
+            <ion-row> 
+                <ion-col>
+                  <ion-button ion-button expand="block"color="light" (click)="doClearHeader()">CLEAR</ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button ion-button expand="block"(click)="doSaveHeader(oClient, listdepart, oHanel_no, oReferent_no, oDate, oRemark)">SAVE</ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button ion-button expand="block"color="secondary" (click)="doCloseHeader(oClient, oHanel_no)">CLOSE</ion-button>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Details'">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size=3>
+            <ion-button ion-button block>CLIENT</ion-button>
+          </ion-col>
+          <ion-col size=2>
+            <ion-input [(ngModel)]="oClient" readonly></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-button ion-button expand="block"(click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)" disabled>R#</ion-button>
+          </ion-col>
+          <ion-col size=5>
+            <ion-input placeholder="R#" [(ngModel)]="oHanel_no" readonly></ion-input>
+          </ion-col>
+        </ion-row>
+<br>
+        <div scrollX="true" scrollY="true">
+          <ion-row style="width: 1000px;" *ngFor = "let details of data_hanel; let i = index" (click)="doReturn(details.line_no, details.serial_no, details.item_no, details.description, details.grade, details.qty, details.uom, details.status, details.qty_use, details.qty_balace, details.original_qty)">
+            <ion-col class="border-col" size=auto *ngIf="details.flag_save != 'Y' ">
+              <ion-row class="border-row" style="width:30px;" *ngIf = "i == 0">
+                #
+              </ion-row>
+              <ion-row style="width:30px;">
+                {{details.line_no}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=auto *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" style="width:30px;" *ngIf = "i == 0">
+                #
+              </ion-row>
+              <ion-row style="width:30px;" >
+                {{details.line_no}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=auto *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" style="width:210px;" *ngIf = "i == 0">
+                Serial
+              </ion-row>
+              <ion-row style="width:210px;">
+                {{details.serial_no}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;width:210px;">
+              <ion-row class="border-row" style="width:210px;" *ngIf = "i == 0">
+                Serial
+              </ion-row>
+              <ion-row style="width:210px;">
+                {{details.serial_no}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=auto style="width:115px;" *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Item No
+              </ion-row>
+              <ion-row>
+                {{details.item_no}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=auto style="width:115px;background-color: #f2fa5f;" *ngIf="details.flag_save == 'Y'" >
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Item No
+              </ion-row>
+              <ion-row>
+                {{details.item_no}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=3 *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Description
+              </ion-row>
+              <ion-row>
+                {{details.description}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=3 *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Description
+              </ion-row>
+              <ion-row>
+                {{details.description}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Grade
+              </ion-row>
+              <ion-row>
+                {{details.grade}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Grade
+              </ion-row>
+              <ion-row>
+                {{details.grade}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Qty
+              </ion-row>
+              <ion-row>
+                {{details.qty}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Qty
+              </ion-row>
+              <ion-row>
+                {{details.qty}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Uom
+              </ion-row>
+              <ion-row>
+                {{details.uom}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Uom
+              </ion-row>
+              <ion-row>
+                {{details.uom}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Status
+              </ion-row>
+              <ion-row>
+                {{details.status}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Status
+              </ion-row>
+              <ion-row>
+                {{details.status}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+               Qty Use
+              </ion-row>
+              <ion-row>
+                {{details.qty_use}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+               Use
+              </ion-row>
+              <ion-row>
+                {{details.qty_use}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col"size=1 *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Qty Balance
+              </ion-row>
+              <ion-row>
+                {{details.qty_balace}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col"size=1 *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;"> 
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Qty Balance
+              </ion-row>
+              <ion-row>
+                {{details.qty_balace}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=1 *ngIf="details.flag_save != 'Y'">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Qty Oqriginal
+              </ion-row>
+              <ion-row>
+                {{details.original_qty}}
+              </ion-row>
+            </ion-col>
+            <ion-col class="border-col" size=1 *ngIf="details.flag_save == 'Y'" style="background-color: #f2fa5f;">
+              <ion-row class="border-row" *ngIf = "i == 0">
+                Qty Oqriginal
+              </ion-row>
+              <ion-row>
+                {{details.original_qty}}
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </div>
+        <br>
+        <ion-row>
+          <ion-col size=auto>
+            <ion-label>จำนวนบันทึก</ion-label>
+          </ion-col>
+          <ion-col size=2>
+            <ion-input [(ngModel)]="oTotal_flag" style="background-color: #FFFF99" readonly></ion-input>
+          </ion-col>
+          <ion-col size=auto>
+            <ion-label>Serial</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input [(ngModel)]="oSerial_no" #focusInputSerial (keyup.enter)="doScanSerial(oSerial_no)"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=auto>
+            <ion-label>Rec No.</ion-label>
+          </ion-col>
+          <ion-col size=2>
+            <ion-input [(ngModel)]="oLine_no" style="background-color: #FFFF99" readonly></ion-input>
+          </ion-col>
+          <ion-col size=auto>
+            <ion-label>Item No</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input [(ngModel)]="oItem_no" #focusInputBarcode style="background-color: #FFFF99"></ion-input>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col size=3>
+            <ion-button ion-button expand="block" (click)="doGetItemNo(oClient)">{{'btn_item' | translate }}</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-input [(ngModel)]="oItem" (click)="doClick()" [disabled]="!isenabled_return"></ion-input>
+          </ion-col>
+          <ion-col size=4>
+            <ion-item>
+            <ion-label stacked style="margin: 0px 0px 0px 0;">{{'grade' | translate }}</ion-label>
+              <ion-select [(ngModel)]="oGrade" interface="popover">
+                <ion-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" [disabled]="!isenabled_return">{{grade.param_code}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row> -->
+        <ion-row>
+          <ion-col size=2>
+            <ion-label>Description</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input style="background-color: #FFFF99" [(ngModel)]="oDes" readonly></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=3>
+            <ion-label>จำนวนเดิม</ion-label>
+          </ion-col>
+          <ion-col >
+              <ion-input style="background-color: #FFFF99" [(ngModel)]="oQty_original" readonly></ion-input>
+          </ion-col>
+          <ion-col size=3>
+            <ion-label>ยอดคงเหลือ</ion-label>
+          </ion-col>
+          <ion-col>
+              <ion-input style="background-color: #FFFF99" [(ngModel)]="oQty_balance" readonly></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=2>
+            <ion-label>จำนวน</ion-label>
+          </ion-col>
+          <ion-col size=2>
+              <ion-input style="background-color: #FFFF99" [(ngModel)]="oQty" readonly></ion-input>
+          </ion-col>
+          <ion-col size=5>
+            <ion-label>จำนวนรอบการใช้งาน</ion-label>
+          </ion-col>
+          <ion-col size=3>
+              <ion-input [(ngModel)]="oQty_use" #focusInputQty type="number"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button ion-button expand="block" color="danger" (click)="doDeleteLine()">Delete</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button ion-button expand="block" (click)="doUpdateHanelDetail(oClient, oHanel_no, oReferent_no, oItem_no, oQty_use, oQty_balance, oQty, oLine_no, oDate, oQty_original, oSerial_no)">Save</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button ion-button expand="block" (click)="doClear()" color="secondary">Clear</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </div>
+</ion-content>
+<ion-footer>
+      <ion-segment [(ngModel)]="Check">
+        <ion-segment-button value="Header" (click)="doClickHeader(Check, listQty)">
+          HEADER
+        </ion-segment-button>
+        <ion-segment-button value="Details" (click)="doClickHeader(Check, listQty)">
+          DETAILS
+        </ion-segment-button>
+      </ion-segment>
+</ion-footer>

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Operation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card (click)="doUsabillity()">
+    <ion-card-content style="border-left: 2px solid rgb(184, 255, 255);">
+      <ion-row>
+
+        <!-- <ion-col col-1 style="margin: auto;">
+          <ion-img width="30" height="30" src="assets/imgs/Stock-count.png"></ion-img>
+        </ion-col> -->
+        <ion-col class="paddingLeft">
+          <ion-card-title>
+            บันทึกการใช้งาน 
+          </ion-card-title>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card (click)="doFactory()">
+    <ion-card-content style="border-left: 2px solid #99CCCC;">
+      <ion-row>
+        <!-- <ion-col col-1 style="margin: auto;">
+          <ion-img width="30" height="30" src="assets/imgs/checkbox-pen-outline.png"></ion-img>
+        </ion-col> -->
+        <ion-col class="paddingLeft">
+          <ion-card-title>
+            เก็บเข้าตู้
+          </ion-card-title>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card (click)="doWarehouseTask()">
+    <ion-card-content style="border-left: 2px solid #99CCCC;">
+      <ion-row>
+        <!-- <ion-col col-1 style="margin: auto;">
+          <ion-img width="30" height="30" src="assets/imgs/checkbox-pen-outline.png"></ion-img>
+        </ion-col> -->
+        <ion-col class="paddingLeft">
+          <ion-card-title>
+            Warehouse Task
+          </ion-card-title>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -5,6 +5,7 @@ import { ServiceService } from 'src/services/service.service';
 import { DocrefPage } from '../docref/docref.page';
 import { ReceiptmodalPage } from '../receiptmodal/receiptmodal.page';
 import { DatePipe } from '@angular/common'
+import { ScanmodalPage } from '../scanmodal/scanmodal.page';
 @Component({
   selector: 'app-warehousetask',
   templateUrl: './warehousetask.page.html',
@@ -53,6 +54,23 @@ export class WarehousetaskPage implements OnInit {
   }
   doLocation() {
     this.focusInputLocation.setFocus();
+  }
+  
+  async doScanSerial() {
+    const modal = await this.modalCtrl.create({
+      component: ScanmodalPage,
+    });
+
+    await modal.present();
+    const modalData = await modal.onWillDismiss();
+   console.log(modalData);
+   if(modalData.data != undefined){
+    this.oSerial = modalData.data
+    this.doGetSerial(modalData.data);
+   }else{
+
+   }
+
   }
   async presentToast(key, showCloseButton, position: string) {
     const toast = await this.toastCtrl.create({
@@ -205,6 +223,8 @@ export class WarehousetaskPage implements OnInit {
         })
 
       }
+    }).catch((err)=>{
+      this.Alert("Error",JSON.stringify(err));
     })
   }
   }

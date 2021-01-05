@@ -5,8 +5,6 @@ import { ServiceService } from 'src/services/service.service';
 import { DocrefPage } from '../docref/docref.page';
 import { ReceiptmodalPage } from '../receiptmodal/receiptmodal.page';
 
-
-
 @Component({
   selector: 'app-usabillity',
   templateUrl: './usabillity.page.html',
@@ -20,7 +18,7 @@ export class UsabillityPage{
   oDate:any = new Date().toISOString();
   isenabled:boolean = false;
   enabled:boolean = false;
-  Check : string = '';
+  Check : string = 'Header';
   oOrder:any;
   oReferent_no:any;
   data_serial:any;
@@ -63,7 +61,6 @@ export class UsabillityPage{
       })
      }
 
-
     //  async doGetReceipt(){
 
     //   let profileModal = this.modalCtrl.create("RecipesmodalPage");
@@ -105,7 +102,7 @@ export class UsabillityPage{
       this.oDepartment = data.data.department_code;
       this.oDepartment_name = data.data.description;
       this.oReferent_no = data.data.reference_no;
-      this.oType = data.data.save_type;
+      this.oType = data.data.save_type["0"];
       this.oRemark = data.data.remark;
       this.doGetHanelDetail(this.oClient, this.oHanel_no)
       this.Get_Flag_Save(this.oClient, this.oHanel_no);
@@ -196,7 +193,8 @@ export class UsabillityPage{
     }
    async doDocrefPage(){
       const modal = await this.modalCtrl.create({
-        component: DocrefPage
+        component: DocrefPage,
+        componentProps: {'oClient':this.oClient}
       });
 
       await modal.present();

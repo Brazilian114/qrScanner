@@ -17,71 +17,22 @@
             <ion-col size=3>
               <ion-button ion-button expand="block" >Client</ion-button>
             </ion-col>
-            <ion-col size=2>
+            <ion-col size="2">
               <ion-input [(ngModel)]="oClient" readonly></ion-input>
             </ion-col>
             <ion-col>
               <ion-button ion-button expand="block" (click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)">R#</ion-button>
-              <!-- <ion-button ion-button expand="block" (click)="gotoBarcodeScanner()">R#</ion-button> -->
+            
             </ion-col>
-            <ion-col size=5>
+            <ion-col size="5">
               <ion-input placeholder="R#" [(ngModel)]="oHanel_no" readonly></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
-            <!-- <ion-col>
-              <ion-item>
-                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'book' | translate }}</ion-label>
-                <ion-select [(ngModel)]="listBook" interface="popover" disabled>
-                  <ion-select-option *ngFor = "let book of data_book" value="{{book.QCBOOK}}">{{book.FMDESC}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col> -->
-            <!-- <ion-col>
-              <ion-label stacked style="margin: 0px 0px 0px 0;">{{'date' | translate }}</ion-label>
-          
-              <ion-input style="border: none;border-bottom-color:none"(click)="doCalendar()" [(ngModel)]="oDate" readonly></ion-input>
-            </ion-col> -->
           </ion-row>
-          <!-- <ion-row>
-            <ion-col>
-              <ion-item>
-                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'warehouse' | translate }}</ion-label>
-                <ion-select [(ngModel)]="listWhses" interface="popover" (ionChange)="doGetStation(listWhses)">
-                  <ion-select-option  *ngFor = "let warehouse of data_warehouse" value="{{warehouse.Warehouse}}">{{warehouse.Description}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'station' | translate }}</ion-label>
-                <ion-select [(ngModel)]="listStation" interface="popover">
-                  <ion-select-option *ngFor = "let station of data_station" value="{{station.station}}">{{station.station}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row> -->
-          <!-- <ion-row>
-            <ion-col>
-              <ion-item>
-                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'zone' | translate }}</ion-label>
-                <ion-select [(ngModel)]="listZone" interface="popover">
-                  <ion-select-option *ngFor = "let zone of data_zone" value="{{zone.Zone}}">{{zone.Description}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label stacked style="margin: 0px 0px 0px 0;">{{'type' | translate }}</ion-label>
-                <ion-select [(ngModel)]="listType" interface="popover" disabled ="{{isEnabled}}">
-                  <ion-select-option value="RETURN" [selected]="true">RETURN</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row> -->
           <ion-row>
-            <ion-col size=3>
+            <ion-col size="3">
               <ion-button ion-button expand="block" (click)="doDocrefPage()">DOC REF</ion-button>
             </ion-col>
             <ion-col>
@@ -97,8 +48,7 @@
                 </ion-select>
               </ion-item>
             </ion-col>
-          <!-- </ion-row>
-          <ion-row> -->
+
             <ion-col>
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">Engine</ion-label>
@@ -107,15 +57,10 @@
                 </ion-select>
               </ion-item>
             </ion-col>
-            <!-- <ion-col size=2>
-              <ion-label>Department</ion-label>
-            </ion-col>
-            <ion-col >
-              <ion-input [(ngModel)]="oDepartment_name" style="background-color: #FFFF99" readonly></ion-input>
-            </ion-col> -->
+         
           </ion-row>
           <ion-row>
-            <ion-col size=3>
+            <ion-col size="3">
               <ion-label>Remark</ion-label>
             </ion-col>
             <ion-col > 
@@ -126,22 +71,41 @@
             <ion-col>
               <ion-label stacked style="margin: 0px 0px 0px 0;">Date</ion-label>
           
-              <!-- <ion-input style="border: none;border-bottom-color:none"(click)="doCalendar()" [(ngModel)]="oDate" readonly></ion-input> -->
+
               <ion-datetime [(ngModel)]="oDate" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD"></ion-datetime>
             </ion-col>
            
-              <ion-col size=auto>
+              <ion-col size="auto">
                 <ion-label>Status</ion-label>
               </ion-col>
-              <ion-col size=4> 
+              <ion-col size="4"> 
                 <ion-input placeholder="Status" [(ngModel)]="oStatus" style="background-color: #FFFF99" readonly></ion-input>
               </ion-col>
          
           </ion-row>
-         
-          <ion-row radio-group [(ngModel)]="oType">
+          <ion-radio-group [(ngModel)]="oType">
+            <ion-row >
+              <ion-col>
+                <ion-item>  
+                  <ion-label>เก็บเข้าตู้</ion-label>
+                  <ion-radio value="Y"></ion-radio>
+                </ion-item>
+              </ion-col>
+              
+                <ion-col>
+                  <ion-item>
+                   <ion-label>ไม่จัดเก็บเข้าตู้</ion-label>
+                    <ion-radio value="N"></ion-radio>
+                  </ion-item>
+                </ion-col>
+            </ion-row>
+          </ion-radio-group>
+          <!-- <ion-list radio-group [(ngModel)]="oType">
+          <ion-radio-group >
+          <ion-row >
             <ion-col>
               <ion-item>  
+                
                 <ion-label>เก็บเข้าตู้</ion-label>
                 <ion-radio value="Y"></ion-radio>
               </ion-item>
@@ -153,35 +117,9 @@
               </ion-item>
             </ion-col>
           </ion-row>
+        </ion-radio-group>
+      </ion-list> -->
         </ion-grid>
-        <!-- <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-item>
-                <ion-label stacked style="margin: 0px 0px 0px 0;">Department</ion-label>
-                <ion-select [(ngModel)]="listdepart" interface="popover">
-                  <ion-select-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size=2>
-              <ion-label>Department</ion-label>
-            </ion-col>
-            <ion-col >
-              <ion-input [(ngModel)]="oDepartment_name" style="background-color: #FFFF99" readonly></ion-input>
-            </ion-col>
-  
-
-            <ion-col size=auto>
-              <ion-label>{{'status' | translate }}</ion-label>
-            </ion-col>
-            <ion-col size=4> 
-              <ion-input placeholder="{{'status' | translate }}" [(ngModel)]="oStatus" style="background-color: #FFFF99" readonly></ion-input>
-            </ion-col>
-          </ion-row>
-        </ion-grid> -->
         <br/>
           <ion-grid>
             <ion-row> 
@@ -202,16 +140,16 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col size=3>
+          <ion-col size="3">
             <ion-button ion-button block>CLIENT</ion-button>
           </ion-col>
-          <ion-col size=2>
+          <ion-col size="2">
             <ion-input [(ngModel)]="oClient" readonly></ion-input>
           </ion-col>
           <ion-col>
             <ion-button ion-button expand="block"(click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)" disabled>R#</ion-button>
           </ion-col>
-          <ion-col size=5>
+          <ion-col size="5">
             <ion-input placeholder="R#" [(ngModel)]="oHanel_no" readonly></ion-input>
           </ion-col>
         </ion-row>
@@ -398,13 +336,13 @@
         </div>
         <br>
         <ion-row>
-          <ion-col size=auto>
+          <ion-col size="auto">
             <ion-label>จำนวนบันทึก</ion-label>
           </ion-col>
-          <ion-col size=2>
+          <ion-col size="2">
             <ion-input [(ngModel)]="oTotal_flag" style="background-color: #FFFF99" readonly></ion-input>
           </ion-col>
-          <ion-col size=auto>
+          <ion-col size="auto">
             <ion-label>Serial</ion-label>
           </ion-col>
           <ion-col>
@@ -412,13 +350,13 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size=auto>
+          <ion-col size="auto">
             <ion-label>Rec No.</ion-label>
           </ion-col>
           <ion-col size=2>
             <ion-input [(ngModel)]="oLine_no" style="background-color: #FFFF99" readonly></ion-input>
           </ion-col>
-          <ion-col size=auto>
+          <ion-col size="auto">
             <ion-label>Item No</ion-label>
           </ion-col>
           <ion-col>
@@ -442,7 +380,7 @@
           </ion-col>
         </ion-row> -->
         <ion-row>
-          <ion-col size=2>
+          <ion-col size="2">
             <ion-label>Description</ion-label>
           </ion-col>
           <ion-col>
@@ -450,13 +388,13 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size=3>
+          <ion-col size="3">
             <ion-label>จำนวนเดิม</ion-label>
           </ion-col>
           <ion-col >
               <ion-input style="background-color: #FFFF99" [(ngModel)]="oQty_original" readonly></ion-input>
           </ion-col>
-          <ion-col size=3>
+          <ion-col size="3">
             <ion-label>ยอดคงเหลือ</ion-label>
           </ion-col>
           <ion-col>
@@ -464,16 +402,16 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size=2>
+          <ion-col size="2">
             <ion-label>จำนวน</ion-label>
           </ion-col>
-          <ion-col size=2>
+          <ion-col size="2">
               <ion-input style="background-color: #FFFF99" [(ngModel)]="oQty" readonly></ion-input>
           </ion-col>
-          <ion-col size=5>
+          <ion-col size="5">
             <ion-label>จำนวนรอบการใช้งาน</ion-label>
           </ion-col>
-          <ion-col size=3>
+          <ion-col size="3">
               <ion-input [(ngModel)]="oQty_use" #focusInputQty type="number"></ion-input>
           </ion-col>
         </ion-row>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController } from '@ionic/angular';
 import { ServiceService } from 'src/services/service.service';
 
@@ -11,19 +11,25 @@ export class DocrefPage implements OnInit {
   data_docref: any;
   data_order_docref: any;
   data_docref_return: any;
-  oClient: any;
+  // oClient: any;
   oCustomer: any;
   oDocref: string;
   loader: any;
   items: any;
-  flag: string = "";
+  // flag: string = "";
   datatranferorder: any;
+  @Input("oClient") oClient;
+  @Input("flag") flag;
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: ServiceService,
     private loadingCtrl: LoadingController,public modalCtrl: ModalController) { 
-      this.oClient = navParams.get('oClient');
+    
     this.oCustomer = navParams.get('oCustomer_Header');
     this.oDocref = navParams.get('oDocref');
-    this.flag = navParams.get('flag');
+    
+    }
+
+  ngOnInit() {
+    console.log(this.oClient);
     console.log(this.flag);
     if(this.flag != undefined){
       console.log(1);
@@ -33,9 +39,6 @@ export class DocrefPage implements OnInit {
       console.log(2);
       this.doGetHanelRef(this.oClient);
     }
-    }
-
-  ngOnInit() {
   }
   initializeItems() {
     if(this.flag != undefined){

@@ -167,6 +167,6 @@ export class LoginPage implements OnInit {
     this.loader.dismiss();
   }
   reload() {
-    window.location.reload();
+    window.location.href = './'
   }
 }

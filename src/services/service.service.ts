@@ -22,7 +22,7 @@ export class ServiceService {
 
   get_client(User) {
     let parameters = 'User=' + User;
-    return this.http.get("http://192.168.1.252/RF-Service_Yasub/RFService.asmx/Get_Client?User=ANON",{ responseType: 'text' })
+    return this.http.get(this.hostWebService + "/Get_Client?" + parameters,{ responseType: 'text' })
        .toPromise()
        .then(response => {
           //console.log(response);

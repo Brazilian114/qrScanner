@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
   },
@@ -41,6 +42,14 @@ const routes: Routes = [
   {
     path: 'docref',
     loadChildren: () => import('./docref/docref.module').then( m => m.DocrefPageModule)
+  },
+  {
+    path: 'itemnomodal',
+    loadChildren: () => import('./itemnomodal/itemnomodal.module').then( m => m.ItemnomodalPageModule)
+  },
+  {
+    path: 'scanmodal',
+    loadChildren: () => import('./scanmodal/scanmodal.module').then( m => m.ScanmodalPageModule)
   },
 
 

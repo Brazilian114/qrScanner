@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Network } from '@ionic-native/network/ngx';
 import { ReceiptmodalPage } from './receiptmodal/receiptmodal.page';
 import { DocrefPage } from './docref/docref.page';
+import { ScanmodalPage } from './scanmodal/scanmodal.page';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,6 +29,7 @@ import { DocrefPage } from './docref/docref.page';
     NavParams,
     DocrefPage,
     DatePipe,
+    ScanmodalPage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ServiceService
   ],

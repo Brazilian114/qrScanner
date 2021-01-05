@@ -17,7 +17,10 @@
         <ion-input [(ngModel)]="oSerial" #focusInputSerial (keyup.enter)="doGetSerial(oSerial)"></ion-input>
       </ion-col>
       <ion-col size="2">
-        <ion-button ion-button expand="block"(click)="doGetSerial(oSerial)">OK</ion-button>
+        <!-- <ion-button ion-button expand="block"(click)="doGetSerial(oSerial)">OK</ion-button> -->
+        <ion-button ion-button expand="block"(click)="doScanSerial()">
+          <ion-icon name="scan-outline"></ion-icon>
+        </ion-button>
       </ion-col>
     </ion-row>
 

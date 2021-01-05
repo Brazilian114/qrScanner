@@ -1,37 +1,32 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>MENU</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <!-- <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list> -->
-
-    <ion-list>
-      <button menuClose ion-item (click)="openHomePage()">
-        Home
-      </button>
-      <button menuClose ion-item (click)="openDCOperationPage()">
-        Operation
-      </button>
-      <!-- <button menuClose ion-item (click)="openListjobPage()">
-        จัดส่งสินค้า
-      </button> -->
-      <!-- <button menuClose ion-item (click)="openBranchOperationPage()">
-        {{"side_storeoperation" | translate }}
-      </button> -->
-      <button menuClose ion-item (click)="doLogout()">
-        Logout
-      </button>
-    </ion-list>
-
-  </ion-content>
-</ion-menu>
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-toolbar color="primary">
+        <ion-title>MENU</ion-title>
+      </ion-toolbar>
+      <ion-content>
+        <ion-list id="inbox-list">
+          <!-- <ion-list-header color="primary">Operation</ion-list-header> -->
+        
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="openHomePage()">
+              <ion-icon name="home-outline"></ion-icon>
+              <ion-label style="margin-left: 15px;">Home</ion-label>
+            </ion-item>
+            <ion-item (click)="openOperationPage()" >
+              <ion-icon name="business-outline"></ion-icon>
+              <ion-label style="margin-left: 15px;">Operation</ion-label>
+            </ion-item>
+            <ion-item (click)="doLogout()">
+              <ion-icon name="log-out-outline"></ion-icon>
+              <ion-label style="margin-left: 15px;">Logout</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

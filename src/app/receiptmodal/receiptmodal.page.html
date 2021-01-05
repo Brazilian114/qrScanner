@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Receipt</ion-title>
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      clearInput>
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="data_receipt">
+    <div *ngFor = "let item of items">
+      <ion-card (click)="doSelectReceipt(item.order_no, item.reference_no, item.status,item.department_code,item.description, item.save_type, item.remark)">
+        <ion-card-content >
+          <ion-card-title>{{item.order_no}}</ion-card-title>
+          <p>{{item.reference_no}}</p>
+          <p>{{item.save_type2}}</p>
+          <p>({{item.status}})</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  <div *ngIf="data_hanel">
+    <div *ngFor = "let item of items">
+      <ion-card (click)="doSelectHanel(item.order_no, item.reference_no, item.status,item.order_no1)">
+        <ion-card-content >
+          <ion-card-title>{{item.order_no}}</ion-card-title>
+          <p>Ref No : {{item.order_no1}}</p>
+          <p>Order No Tranfer : {{item.reference_no}}</p>
+          <p>Status: {{item.status}}</p>
+        
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button ion-button clear (click)="dismiss()">
+   Close
+  </ion-button>
+</ion-footer>

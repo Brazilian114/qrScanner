@@ -45,7 +45,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">Warehouse</ion-label>
                 <ion-select [(ngModel)]="oWarehouse" interface="popover" [disabled]="!isdisabledwh">
-                  <ion-option  *ngFor = "let warehouse of listWarehouse" value="{{warehouse.Warehouse}}">{{warehouse.Warehouse}}</ion-option>
+                  <ion-select-option  *ngFor = "let warehouse of listWarehouse" value="{{warehouse.Warehouse}}">{{warehouse.Warehouse}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -53,20 +53,13 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">Zone</ion-label>
                 <ion-select [(ngModel)]="oZone" interface="popover" [disabled]="!isdisabledzone">
-                  <ion-option *ngFor = "let zone of listZone" value="{{zone.Zone}}">{{zone.Description}}</ion-option>
+                  <ion-select-option *ngFor = "let zone of listZone" value="{{zone.Zone}}">{{zone.Description}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
           </ion-row>
 
-          <!-- <ion-row>
-            <ion-col size=3>
-              <ion-button ion-button expand="block" (click)="doDocrefPage()">{{'docref' | translate }}</ion-button>
-            </ion-col>
-            <ion-col>
-              <ion-input placeholder="{{'docref' | translate }}" [(ngModel)]="oReference_no" (click)="doClick()" (keyup.enter)="doGetBranchReturn_Header(oClient, oCustomer_Header, oDocref)"></ion-input>
-            </ion-col>
-          </ion-row> -->
+      
         </ion-grid>
         <ion-grid>
           <ion-row>
@@ -111,7 +104,7 @@
             <ion-button ion-button expand="block" disabled >R#</ion-button>
           </ion-col>
           <ion-col size="5">
-            <ion-input placeholder="{{'btn_r#' | translate }}" [(ngModel)]="oOrder" readonly></ion-input>
+            <ion-input placeholder="R#" [(ngModel)]="oOrder" readonly></ion-input>
           </ion-col>
         </ion-row>
         <br>
@@ -230,9 +223,9 @@
           </ion-col>
           <ion-col size="4">
             <ion-item>
-            <ion-label stacked style="margin: 0px 0px 0px 0;">{{'grade' | translate }}</ion-label>
+            <ion-label stacked style="margin: 0px 0px 0px 0;">Grade</ion-label>
               <ion-select [(ngModel)]="oGrade" interface="popover" disabled>
-                <ion-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" [disabled]="!isenabled_return">{{oGrade}}</ion-option>
+                <ion-select-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" [disabled]="!isenabled_return">{{oGrade}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -310,7 +303,7 @@
         <ion-segment-button value="Header" (click)="doClickHeader(Check, listQty)">
           HEADER
         </ion-segment-button>
-        <ion-segment-button value="Details" (click)="doClickHeader(Check, listQty)">
+        <ion-segment-button value="Details">
           DETAILS
         </ion-segment-button>
       </ion-segment>

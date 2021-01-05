@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Doc Ref</ion-title>
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      clearInput>
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="data_order_docref">
+    <div *ngFor = "let data of items">
+      <ion-card (click)="doSelectDocref(data.order_no, data.status, data.department_code, data.description, data.whse_source, data.zone_dest)">
+        <ion-card-content >
+          <ion-card-title>{{data.order_no}}</ion-card-title>
+          <p>Status: {{data.status}}</p>
+          <p>Department: {{data.department_code}}</p>
+          <p>Department Name: {{data.description}}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  <div *ngIf="data_docref">
+    <div *ngFor = "let data of items">
+      <ion-card (click)="doSelectDocrefReturn(data.order_no,data.status,data.reference_no,data.department,data.description)">
+        <ion-card-content >
+          <ion-card-title>{{data.order_no}}</ion-card-title>
+          <p>Status: {{data.status}}</p>
+          <p>Reference No: {{data.reference_no}}</p>
+          <p>Department: {{data.department}}</p>
+          <p>Department Name: {{data.description}}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button ion-button clear (click)="dismiss()">
+    Close
+  </ion-button>
+</ion-footer>

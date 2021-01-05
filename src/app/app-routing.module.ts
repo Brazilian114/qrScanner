@@ -34,6 +34,14 @@ const routes: Routes = [
     path: 'operation',
     loadChildren: () => import('./operation/operation.module').then( m => m.OperationPageModule)
   },
+  {
+    path: 'receiptmodal',
+    loadChildren: () => import('./receiptmodal/receiptmodal.module').then( m => m.ReceiptmodalPageModule)
+  },
+  {
+    path: 'docref',
+    loadChildren: () => import('./docref/docref.module').then( m => m.DocrefPageModule)
+  },
 
 
 ];

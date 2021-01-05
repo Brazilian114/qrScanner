@@ -21,8 +21,8 @@
               <ion-input [(ngModel)]="oClient" readonly></ion-input>
             </ion-col>
             <ion-col>
-              <!-- <ion-button ion-button expand="block" (click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)">R#</ion-button> -->
-              <ion-button ion-button expand="block" (click)="gotoBarcodeScanner()">R#</ion-button>
+              <ion-button ion-button expand="block" (click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)">R#</ion-button>
+              <!-- <ion-button ion-button expand="block" (click)="gotoBarcodeScanner()">R#</ion-button> -->
             </ion-col>
             <ion-col size=5>
               <ion-input placeholder="R#" [(ngModel)]="oHanel_no" readonly></ion-input>
@@ -34,7 +34,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">{{'book' | translate }}</ion-label>
                 <ion-select [(ngModel)]="listBook" interface="popover" disabled>
-                  <ion-option *ngFor = "let book of data_book" value="{{book.QCBOOK}}">{{book.FMDESC}}</ion-option>
+                  <ion-select-option *ngFor = "let book of data_book" value="{{book.QCBOOK}}">{{book.FMDESC}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col> -->
@@ -49,7 +49,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">{{'warehouse' | translate }}</ion-label>
                 <ion-select [(ngModel)]="listWhses" interface="popover" (ionChange)="doGetStation(listWhses)">
-                  <ion-option  *ngFor = "let warehouse of data_warehouse" value="{{warehouse.Warehouse}}">{{warehouse.Description}}</ion-option>
+                  <ion-select-option  *ngFor = "let warehouse of data_warehouse" value="{{warehouse.Warehouse}}">{{warehouse.Description}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -57,7 +57,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">{{'station' | translate }}</ion-label>
                 <ion-select [(ngModel)]="listStation" interface="popover">
-                  <ion-option *ngFor = "let station of data_station" value="{{station.station}}">{{station.station}}</ion-option>
+                  <ion-select-option *ngFor = "let station of data_station" value="{{station.station}}">{{station.station}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -67,7 +67,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">{{'zone' | translate }}</ion-label>
                 <ion-select [(ngModel)]="listZone" interface="popover">
-                  <ion-option *ngFor = "let zone of data_zone" value="{{zone.Zone}}">{{zone.Description}}</ion-option>
+                  <ion-select-option *ngFor = "let zone of data_zone" value="{{zone.Zone}}">{{zone.Description}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -75,7 +75,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">{{'type' | translate }}</ion-label>
                 <ion-select [(ngModel)]="listType" interface="popover" disabled ="{{isEnabled}}">
-                  <ion-option value="RETURN" [selected]="true">RETURN</ion-option>
+                  <ion-select-option value="RETURN" [selected]="true">RETURN</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -93,7 +93,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">Department</ion-label>
                 <ion-select [(ngModel)]="listdepart" interface="popover">
-                  <ion-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-option>
+                  <ion-select-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -103,7 +103,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">Engine</ion-label>
                 <ion-select [(ngModel)]="listengine" interface="popover">
-                  <ion-option *ngFor = "let engine of data_engine" value="{{engine.param_code}}">{{engine.param_desc}}</ion-option>
+                  <ion-select-option *ngFor = "let engine of data_engine" value="{{engine.param_code}}">{{engine.param_desc}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -160,7 +160,7 @@
               <ion-item>
                 <ion-label stacked style="margin: 0px 0px 0px 0;">Department</ion-label>
                 <ion-select [(ngModel)]="listdepart" interface="popover">
-                  <ion-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-option>
+                  <ion-select-option *ngFor = "let depart of data_depart" value="{{depart.sect_id}}">{{depart.description}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -436,7 +436,7 @@
             <ion-item>
             <ion-label stacked style="margin: 0px 0px 0px 0;">{{'grade' | translate }}</ion-label>
               <ion-select [(ngModel)]="oGrade" interface="popover">
-                <ion-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" [disabled]="!isenabled_return">{{grade.param_code}}</ion-option>
+                <ion-select-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" [disabled]="!isenabled_return">{{grade.param_code}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>

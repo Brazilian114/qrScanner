@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
   }
   getData() {
     console.log(1234);
-    this.service.get_client("").then(
+    this.service.getStudent("").then(
       (res) => {
         console.log(res);
       },

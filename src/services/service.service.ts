@@ -10,6 +10,7 @@ export class ServiceService {
   public hostWebService: string;
   public WebServiceUploadPic: string;
   url: string;
+  unitsInfo
   constructor(public http:HttpClient) { }
 
   get_client(User) {
@@ -37,10 +38,14 @@ export class ServiceService {
        );
  }
  public getStudent(id){
-  return this.http.get("https://jsonplaceholder.typicode.com/todos/1")
-    .pipe(
-    );
-}
+  return new Promise(resolve => {
+    this.http.get('http://58.137.91.7/RF-Service_Yasub/RFService.asmx/Get_Client?User=ANON')
+      .subscribe(data => {
+         this.unitsInfo = data.toString()
+         resolve(this.unitsInfo);
+      });
+})
+ }
 get_client2(){
   
 return new Promise(resolve => {

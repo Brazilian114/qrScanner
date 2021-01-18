@@ -86,6 +86,9 @@
                 <ion-col>
                   <ion-button ion-button expand="block" (click)="doSaveHeader(oClient, oOrder, oDate, oDocRef, oStatus, oWarehouse, oZone)">SAVE</ion-button>
                 </ion-col>
+                <ion-col>
+                  <ion-button ion-button expand="block" (click)="doConfirmHeader(oClient, oOrder, oDate, oDocRef, oStatus, oWarehouse, oZone)">CONFIRM</ion-button>
+                </ion-col>
             </ion-row>
           </ion-grid>
     </ion-list>
@@ -109,7 +112,7 @@
         </ion-row>
         <br>
         <ion-scroll scrollX="true" scrollY="true">
-          <ion-row style="width: 1000px;" *ngFor = "let details of data_task_detail; let i = index" (click)="doReturn(details.task_no, details.serial_number, details.item_no, details.description, details.grade, details.warehouse, details.location_from, details.location_to, details.ppq_qty, details.print_unit, details.area_from)">
+          <ion-row style="width: 1000px;" *ngFor = "let details of data_task_detail; let i = index" (click)="doReturn(details.task_no, details.serial_number, details.item_no, details.description, details.grade, details.warehouse, details.location_from, details.location_to, details.ppq_qty, details.print_unit, details.area_from, details.line_no)">
             <ion-col class="border-col" size=auto>
               <ion-row class="border-row" style="width:30px;" *ngIf = "i == 0">
                 #
@@ -292,6 +295,9 @@
         <ion-row>
           <ion-col>
             <ion-button ion-button expand="block" color="secondary" (click)="doClearDetail()">Clear</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button ion-button expand="block" color="danger" (click)="doDeleteLine()">Delete</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

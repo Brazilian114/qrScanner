@@ -15,7 +15,7 @@ export class ServiceService {
   constructor(public storage:Storage,public http:HttpClient) {
     this.storage.get('_url').then((res) => {
       this.url = res;
-      this.hostWebService = "http://" + this.url + "/RF-Service_Yasub/RFService.asmx";
+      this.hostWebService = "https://" + this.url + "/RF-Service_Yasub/RFService.asmx";
       // this.hostWebService = "http://58.137.91.7/RF-Service_Yasub/RFService.asmx";
    })
    }
@@ -416,8 +416,8 @@ Confirm_Hanel_master(oClient, oDepartment, oOrder_no, oReference, oOrderDate, oM
      );
 }
 
-Auto_Hanel_Detail(oClient, oHanel_no, oTranfer_no, oUser) {
-  let parameters = 'oClient=' + oClient + '&oHanel_no=' + oHanel_no+ '&oTranfer_no=' + oTranfer_no
+Auto_Hanel_Detail(oClient, oHanel_no, oTranfer_no, oUser, oQty) {
+  let parameters = 'oClient=' + oClient + '&oHanel_no=' + oHanel_no+ '&oTranfer_no=' + oTranfer_no+ '&oQty=' + oQty
   + '&oUser=' + oUser;
   return this.http.get(this.hostWebService + "/Auto_Hanel_Detail?" + parameters,{ responseType: 'text' })
      .toPromise()
@@ -930,4 +930,50 @@ Check_Serial_Number(oWork, oSerial, oPallet, oItem) {
      }
      );
 }
+Delete_Transfer_Order_Detail(oClient, oOrder_no, oLine_no, oMaker) {
+   let parameters = 'oClient=' + oClient + '&oOrder_no=' + oOrder_no+ '&oLine_no=' + oLine_no+ '&oMaker=' + oMaker
+   return this.http.get(this.hostWebService + "/Delete_Transfer_Order_Detail?" + parameters,{ responseType: 'text' })
+      .toPromise()
+      .then(response => {
+ 
+         console.log(response);
+         
+         let a;
+         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
+            a = result;
+         });
+         try {
+            // return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table["0"];
+            return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table
+            // return a.DataTable["diffgr:diffgram"].NewDataSet.Table;
+         }
+         catch (e) {
+            return [];
+         }
+      }
+      );
+ }
+ Show_TZ_HM(oClient, oOrder_no) {
+   let parameters = 'oClient=' + oClient + '&oOrder_no=' + oOrder_no
+   return this.http.get(this.hostWebService + "/Show_TZ_HM?" + parameters,{ responseType: 'text' })
+      .toPromise()
+      .then(response => {
+ 
+         console.log(response);
+         
+         let a;
+         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
+            a = result;
+         });
+         try {
+            // return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table["0"];
+            return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table
+            // return a.DataTable["diffgr:diffgram"].NewDataSet.Table;
+         }
+         catch (e) {
+            return [];
+         }
+      }
+      );
+ }
 }

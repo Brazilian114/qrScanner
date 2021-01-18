@@ -15,23 +15,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <div style="margin-top: 90%">
-    <ion-row>
-      <ion-label style="text-align: center;">ผู้ใช้เข้าสู่ระบบอยู่</ion-label>
+<ion-content padding>
+  <div style="margin-top: 90%;padding: 0px 119px;">
+    <ion-row >
+      <ion-col text-center>
+        <ion-label >This user is currently logged in.</ion-label>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-label style="text-align: center;">Username : {{data_logins}}</ion-label>
+      <ion-col text-center>
+      <ion-label>Username : {{data_logins}}</ion-label>
+    </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col text-center>
+      <ion-label >Group : {{oGroup}}</ion-label>
+    </ion-col>
     </ion-row>
     <ion-row>
-      <ion-label style="text-align: center;">Group : {{oGroup}}</ion-label>
+      <ion-col text-center>
+      <ion-label>Store : {{oCus_name}}</ion-label>
+  </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-label style="text-align: center;">Store : {{oCus_name}}</ion-label>
-    </ion-row>
-    
-    <!-- <ion-label style="text-align: center;">Username</ion-label>
-    <ion-label style="text-align: center;">Group</ion-label>
-    <ion-label *ngIf="oCus_name != undefined" style="text-align: center;">Store</ion-label> -->
+
   </div>
 </ion-content>

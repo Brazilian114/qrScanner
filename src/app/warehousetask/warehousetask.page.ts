@@ -70,7 +70,20 @@ export class WarehousetaskPage implements OnInit {
    }else{
 
    }
+  }
+  async doScanLocation() {
+    const modal = await this.modalCtrl.create({
+      component: ScanmodalPage,
+    });
 
+    await modal.present();
+    const modalData = await modal.onWillDismiss();
+   console.log(modalData);
+   if(modalData.data != undefined){
+    this.oLocation_con = modalData.data
+   }else{
+
+   }
   }
   async presentToast(key, showCloseButton, position: string) {
     const toast = await this.toastCtrl.create({

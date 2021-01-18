@@ -45,6 +45,7 @@ export class FactoryPage implements OnInit {
   oWork:any;
   isdisabledwh:boolean = true;
   isdisabledzone:boolean = true;
+  oLine:any;
   constructor(public navCtrl: NavController, private service: ServiceService, private loadingCtrl: LoadingController, private toastCtrl: ToastController
     , private modalCtrl: ModalController, private storage: Storage, public platform: Platform, private alertCtrl: AlertController) { 
       this.storage.get('_user').then((res)=>{
@@ -147,7 +148,7 @@ export class FactoryPage implements OnInit {
           this.oDocRef = modalData.data.ref_no;
           this.oOrder = modalData.data.order_no;
           this.oStatus = modalData.data.status;
-          this.doGetTaskOrder(this.oClient,this.oOrder,"");
+          this.doGetTaskOrder(this.oClient,this.oOrder);
           this.doGetZone(this.oClient,this.oOrder);
           this.doGetWarehouse(this.oClient, this.oOrder);
           this.doClearDetail();
@@ -188,6 +189,7 @@ export class FactoryPage implements OnInit {
     this.oQty = "";
     this.oQty_balance = "";
     this.oDes = "";
+    this.oLine = "";
   }
   doGetZone(oClient, oOrder){
     this.service.Get_Zone_By_Order(oClient, oOrder).then((res)=>{
@@ -204,16 +206,24 @@ export class FactoryPage implements OnInit {
         this.oWarehouse = res["0"].Warehouse["0"]
     })
   }
-  doGetTaskOrder(oClient, oOrder_no,oWarehouse){
-    this.service.Outstanding_Tasks_Get_Chabaa(oClient,oOrder_no,"TZ",oWarehouse,this.oUsername).then((res)=>{
+  // doGetTaskOrder(oClient, oOrder_no,oWarehouse){
+  //   this.service.Outstanding_Tasks_Get_Chabaa(oClient,oOrder_no,"TZ",oWarehouse,this.oUsername).then((res)=>{
+  //   this.data_task_detail = res;
+  //     console.log(this.data_task_detail);
+  //     this.oWork = this.data_task_detail["0"].works_order["0"];
+  //   })
+  // }
+  doGetTaskOrder(oClient, oOrder_no){
+    this.service.Show_TZ_HM(oClient,oOrder_no).then((res)=>{
     this.data_task_detail = res;
       console.log(this.data_task_detail);
       this.oWork = this.data_task_detail["0"].works_order["0"];
     })
   }
-  doReturn(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit, area_from){
-    console.log(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit);
+  doReturn(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit, area_from,line_no){
+    console.log(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit,line_no);
     this.oTask_no = task_no;
+    this.oLine = line_no;
     this.oSerial_no = serial_no;
     this.oItem = item_no;
     this.oDes = description;
@@ -228,7 +238,7 @@ export class FactoryPage implements OnInit {
     //   this.focusInputQty.setFocus();
     // }, 1000);
   }
-  doSaveHeader(oClient, oOrder, oDate, oDocref, oStatus, oWarehouse, oZone){
+  doConfirmHeader(oClient, oOrder, oDate, oDocref, oStatus, oWarehouse, oZone){
     console.log(oClient, oOrder, oDate, oDocref, oStatus, oWarehouse, oZone);
     
     if(oDocref == undefined || oDocref == ""){
@@ -241,10 +251,10 @@ export class FactoryPage implements OnInit {
       if(this.oOrder == undefined){
         this.oOrder = "";
       }
-      this.service.Insert_Keein_Gr_Loc_From(this.oClient,this.oOrder,this.oDocRef,"DATA ENTRY",this.oUsername,this.oDate,this.oZone,this.oWarehouse).then((res)=>{
-        console.log(res);
-        if(res["0"].sql_status == 0){
-          this.oOrder = res["0"].order_no["0"]
+      // this.service.Insert_Keein_Gr_Loc_From(this.oClient,this.oOrder,this.oDocRef,"DATA ENTRY",this.oUsername,this.oDate,this.oZone,this.oWarehouse).then((res)=>{
+      //   console.log(res);
+        // if(res["0"].sql_status == 0){
+        //   this.oOrder = res["0"].order_no["0"]
           this.service.Transfer_Order_Stock_Available_Check(this.oClient,this.oOrder,this.oUsername).then((res)=>{
             console.log(res);
             if(res.length > 0){
@@ -267,7 +277,7 @@ export class FactoryPage implements OnInit {
                           this.Alert("Error",res["0"].sqlmsg)
                         }else{
                           this.Alert("Success","success")
-                          this.doGetTaskOrder(oClient, this.oOrder,"")
+                          this.doGetTaskOrder(oClient, this.oOrder)
                         }
                       })
                     }
@@ -276,12 +286,93 @@ export class FactoryPage implements OnInit {
               })
             }
           })
+        // }else{
+        //   console.log("Error");
+        //   this.Alert("Error",res["0"].sql_message)
+        //  // console.log(res);
+        // }
+      // })
+    }
+  }
+  
+  doSaveHeader(oClient, oOrder, oDate, oDocref, oStatus, oWarehouse, oZone){
+    console.log(oClient, oOrder, oDate, oDocref, oStatus, oWarehouse, oZone);
+    
+    if(oDocref == undefined || oDocref == ""){
+      this.Alert("Error","กรุณาระบุเลข Doc Ref")
+    }else if(oWarehouse == undefined || oWarehouse == ""){
+      this.Alert("Error","กรุณาระบุ Warehouse")
+    }else if(oZone == undefined || oZone == ""){
+      this.Alert("Error","กรุณาระบุ Zone")
+    }else{
+      if(this.oOrder == undefined){
+        this.oOrder = "";
+      }
+      this.service.Insert_Keein_Gr_Loc_From(this.oClient,this.oOrder,this.oDocRef,"DATA ENTRY",this.oUsername,this.oDate,this.oZone,this.oWarehouse).then((res)=>{
+        console.log(res);
+        if(res["0"].sql_status == 0){
+          this.oOrder = res["0"].order_no["0"];
+          this.Alert("Success","success")
+          this.doGetTaskOrder(oClient, this.oOrder)
         }else{
           console.log("Error");
           this.Alert("Error",res["0"].sql_message)
          // console.log(res);
         }
       })
+    }
+  }
+  async doDeleteLine(){
+    if(this.oOrder == "" || this.oOrder == undefined){
+      this.Alert("Message","กรุณาระบุเลขเอกสาร");
+    }else if(this.oLine == "" || this.oLine == undefined){
+      this.Alert("Message","กรุณาระบุ Line");
+    }else{
+      let alert = await this.alertCtrl.create({
+        header: "Warning",
+        message: "คุณต้องการที่จะลบ line นี้ใช่หรือไม่",
+        buttons: [ {
+            text: 'ยกเลิก',
+            handler: data => {
+  
+            }
+          },
+          {
+            text: 'ตกลง',
+            handler: data => {
+  
+              this.service.Delete_Transfer_Order_Detail(this.oClient,this.oOrder,this.oLine,this.oUsername).then((res)=>{
+                console.log(res);
+                if(res[0].sqlstatus != 0){
+                  this.Alert("Error",res["0"].sqlmsg);
+                }else{
+                  // let alert =  this.alertCtrl.create({
+                  //   header: "Message",
+                  //   message: "Success",
+                  //   buttons: [ {
+                  //       text: 'ตกลง',
+                  //       handler: data => {
+                          // this.doGetHanelDetail(this.oClient, this.oHanel_no)
+                          this.doGetTaskOrder(this.oClient, this.oOrder)
+                          // this.doClear();
+                          setTimeout(() => {
+                            this.focusInputSerial.setFocus();
+                          }, 1000);
+                  //       }
+                  //     }]
+                  // });
+                  //alert.present();
+                }
+  
+             
+              }).catch(()=>{
+                this.Alert("Error","Cannot Delete Line");
+              })
+
+            }
+          }]
+      });
+      alert.present();
     }
   }
 

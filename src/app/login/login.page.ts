@@ -86,11 +86,11 @@ export class LoginPage implements OnInit {
                 this.storage.ready().then(() => {
                   this.storage.set('_user', oUsername)
                 })
-                this.finishLoding();
+                //this.finishLoding();
                 this.navCtrl.navigateRoot("home");
               }
             }).catch(err => {
-              this.Alert("Error",err);
+              this.Alert("Error",JSON.stringify(err));
           });;
           }
         } else if (this.network.type === 'none') {
@@ -136,7 +136,7 @@ export class LoginPage implements OnInit {
   async presentLoading() {
     this.loader = await this.loadingCtrl.create({
       message: "Loading...",
-      duration: 3000
+      duration: 2000
     });
     await this.loader.present();
   };

@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { ServiceService } from 'src/services/service.service';
 import { DocrefPage } from '../docref/docref.page';
 import { ReceiptmodalPage } from '../receiptmodal/receiptmodal.page';
-
+import { ScanmodalPage } from '../scanmodal/scanmodal.page';
 @Component({
   selector: 'app-usabillity',
   templateUrl: './usabillity.page.html',
@@ -47,6 +47,7 @@ export class UsabillityPage{
   oTotal:any;
   oTotal_flag:any;
   oRemark:any;
+  oQty_use_head:any;
   constructor(public navCtrl: NavController, private service: ServiceService, private loadingCtrl: LoadingController, private toastCtrl: ToastController
     , private modalCtrl: ModalController, private storage: Storage, public platform: Platform, private alertCtrl: AlertController) {
       this.storage.get('_client').then((res)=>{
@@ -92,7 +93,7 @@ export class UsabillityPage{
       await modal.present();
       const data = await modal.onWillDismiss();
      console.log(data);
-     if(data == undefined){
+     if(data.data == undefined){
 
     }else{
       // this.reload();
@@ -200,7 +201,7 @@ export class UsabillityPage{
       await modal.present();
       const modalData = await modal.onWillDismiss();
       console.log(modalData);
-      if(modalData == undefined){
+      if(modalData.data == undefined){
 
       }else{
         this.oReferent_no = modalData.data.reference_no;
@@ -254,7 +255,7 @@ export class UsabillityPage{
         this.data_engine = res;
       })
     }
-    doSaveHeader(oClient,listdepart,oHanel_no,oReferent_no,oDate, oRemark){
+    doSaveHeader(oClient,listdepart,oHanel_no,oReferent_no,oDate, oRemark, oQty){
       if(oReferent_no == undefined || oReferent_no == ""){
         this.Alert("Error","กรุณาระบุเลขเอกสารอ้างอิง");
       }else if(listdepart == undefined || listdepart == ""){
@@ -275,7 +276,7 @@ export class UsabillityPage{
                   if(this.datahanel["0"].sql_status == 0){
                     this.Alert("Message","Success");
                     this.oHanel_no = this.datahanel["0"].out_order
-                    this.service.Auto_Hanel_Detail(oClient,this.datahanel["0"].out_order,oReferent_no,this.oUsername).then((res)=>{
+                    this.service.Auto_Hanel_Detail(oClient,this.datahanel["0"].out_order,oReferent_no,this.oUsername, oQty).then((res)=>{
                       console.log(res);
                       if(res["0"].sql_status == 0){
                         this.doGetHanelDetail(oClient,this.oHanel_no)
@@ -299,7 +300,7 @@ export class UsabillityPage{
                 if(this.datahanel["0"].sql_status == 0){
                   this.Alert("Message","Success");
                   this.oHanel_no = this.datahanel["0"].out_order
-                  this.service.Auto_Hanel_Detail(oClient,this.datahanel["0"].out_order,oReferent_no,this.oUsername).then((res)=>{
+                  this.service.Auto_Hanel_Detail(oClient,this.datahanel["0"].out_order,oReferent_no,this.oUsername, oQty).then((res)=>{
                     console.log(res);
                     if(res["0"].sql_status == 0){
                       this.doGetHanelDetail(oClient,this.oHanel_no)
@@ -313,6 +314,22 @@ export class UsabillityPage{
           
        
       }
+    }
+    async doScan() {
+      const modal = await this.modalCtrl.create({
+        component: ScanmodalPage,
+      });
+  
+      await modal.present();
+      const modalData = await modal.onWillDismiss();
+     console.log(modalData);
+     if(modalData.data != undefined){
+      this.oSerial_no = modalData.data
+      this.doScanSerial(modalData.data);
+     }else{
+  
+     }
+  
     }
     doGetHanelDetail(oClient, oOrder_no){
       this.service.Get_Hanel_detail(oClient,oOrder_no).then((res)=>{
@@ -459,22 +476,22 @@ export class UsabillityPage{
             handler: data => {
   
               this.service.Delete_Hanel_Detail(this.oClient,this.oHanel_no,this.oLine_no,this.oUsername).then((res)=>{
-                
-                let alert =  this.alertCtrl.create({
-                  header: "Message",
-                  message: "Success",
-                  buttons: [ {
-                      text: 'ตกลง',
-                      handler: data => {
+                 
+                // let alert =  this.alertCtrl.create({
+                //   header: "Message",
+                //   message: "Success",
+                //   buttons: [ {
+                //       text: 'ตกลง',
+                //       handler: data => {
                         this.doGetHanelDetail(this.oClient, this.oHanel_no)
                         this.Get_Flag_Save(this.oClient, this.oHanel_no);
                         this.doClear();
                         setTimeout(() => {
                           this.focusInputSerial.setFocus();
                         }, 1000);
-                      }
-                    }]
-                });
+                //       }
+                //     }]
+                // });
                 //alert.present();
              
               }).catch(()=>{

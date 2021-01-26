@@ -46,6 +46,7 @@ export class FactoryPage implements OnInit {
   isdisabledwh:boolean = true;
   isdisabledzone:boolean = true;
   oLine:any;
+  listGrade:any;
   constructor(public navCtrl: NavController, private service: ServiceService, private loadingCtrl: LoadingController, private toastCtrl: ToastController
     , private modalCtrl: ModalController, private storage: Storage, public platform: Platform, private alertCtrl: AlertController) { 
       this.storage.get('_user').then((res)=>{

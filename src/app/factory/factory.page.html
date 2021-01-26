@@ -21,7 +21,7 @@
               <ion-input [(ngModel)]="oClient" readonly></ion-input>
             </ion-col>
             <ion-col size="2">
-              <ion-button ion-button expand="block" (click)="doGetReceipt(oClient, listType ,oReceipt, listBook, listWhses)">R#</ion-button>
+              <ion-button ion-button expand="block" (click)="doGetReceipt()">R#</ion-button>
             </ion-col>
             <ion-col >
               <ion-input placeholder="R#" [(ngModel)]="oOrder" ></ion-input>
@@ -111,14 +111,14 @@
           </ion-col>
         </ion-row>
         <br>
-        <ion-scroll scrollX="true" scrollY="true">
+        <div scrollX="true" scrollY="true">
           <ion-row style="width: 1000px;" *ngFor = "let details of data_task_detail; let i = index" (click)="doReturn(details.task_no, details.serial_number, details.item_no, details.description, details.grade, details.warehouse, details.location_from, details.location_to, details.ppq_qty, details.print_unit, details.area_from, details.line_no)">
             <ion-col class="border-col" size=auto>
               <ion-row class="border-row" style="width:30px;" *ngIf = "i == 0">
                 #
               </ion-row>
               <ion-row style="width:30px;">
-                {{details.task_no}}
+                {{details.line_no}}
               </ion-row>
             </ion-col>
             <ion-col class="border-col">
@@ -126,7 +126,7 @@
                 Pallet
               </ion-row>
               <ion-row style="width:150px;">
-                {{details.pallet_from}}
+                {{details.pallet}}
               </ion-row>
             </ion-col>
             <ion-col class="border-col">
@@ -202,7 +202,7 @@
               </ion-row>
             </ion-col> -->
           </ion-row>
-        </ion-scroll>
+        </div>
         <ion-row>
           <ion-col size="auto">
             <ion-label>Rec No.</ion-label>
@@ -222,13 +222,13 @@
             <ion-label>Item</ion-label>
           </ion-col>
           <ion-col>
-            <ion-input [(ngModel)]="oItem" (click)="doClick()"  style="background-color: #FFFF99" readonly></ion-input>
+            <ion-input [(ngModel)]="oItem"  style="background-color: #FFFF99" readonly></ion-input>
           </ion-col>
           <ion-col size="4">
             <ion-item>
             <ion-label stacked style="margin: 0px 0px 0px 0;">Grade</ion-label>
               <ion-select [(ngModel)]="oGrade" interface="popover" disabled>
-                <ion-select-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" [disabled]="!isenabled_return">{{oGrade}}</ion-select-option>
+                <ion-select-option *ngFor="let grade of listGrade" value="{{grade.param_code}}" disabled>{{oGrade}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -306,7 +306,7 @@
 </ion-content>
 <ion-footer>
       <ion-segment [(ngModel)]="Check">
-        <ion-segment-button value="Header" (click)="doClickHeader(Check, listQty)">
+        <ion-segment-button value="Header">
           HEADER
         </ion-segment-button>
         <ion-segment-button value="Details">

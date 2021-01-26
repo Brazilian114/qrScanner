@@ -14,8 +14,20 @@ ion-input{
   }
   ion-scroll {
     white-space: normal;
-    height: 140px;
+    height: 100px;
     // width: 100px;
+  }
+  div[scrollx=true],div[scrolly=true] {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  div[scrollx=true] {
+    overflow-x: auto;
+  }
+  
+  div[scrolly=true] {
+    overflow-y: auto;
   }
   .border-col{
     border: 1px solid #cecece;

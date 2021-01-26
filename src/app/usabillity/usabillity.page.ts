@@ -46,7 +46,7 @@ export class UsabillityPage{
   listengine:any;
   oTotal:any;
   oTotal_flag:any;
-  oRemark:any;
+  oRemark:string;
   oQty_use_head:any;
   constructor(public navCtrl: NavController, private service: ServiceService, private loadingCtrl: LoadingController, private toastCtrl: ToastController
     , private modalCtrl: ModalController, private storage: Storage, public platform: Platform, private alertCtrl: AlertController) {
@@ -260,6 +260,8 @@ export class UsabillityPage{
         this.Alert("Error","กรุณาระบุเลขเอกสารอ้างอิง");
       }else if(listdepart == undefined || listdepart == ""){
         this.Alert("Error","กรุณาระบุแผนก");
+      }else if(oQty == undefined || oQty == ""){
+        this.Alert("Error","กรุณาระบุจำนวนรอบการใช้งาน");
       }else if(oHanel_no == undefined || oHanel_no == ""){
           this.service.Check_Hanel_Status(this.oReferent_no).then((res)=>{
             console.log(res);
@@ -312,7 +314,6 @@ export class UsabillityPage{
                 }
             })
           
-       
       }
     }
     async doScan() {

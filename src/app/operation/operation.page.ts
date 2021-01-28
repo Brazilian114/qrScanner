@@ -13,7 +13,8 @@ export class OperationPage implements OnInit {
   ngOnInit() {
   }
   doUsabillity() {
-    this.router.navigate(['/usabillity']);
+    // this.router.navigate(['/usabillity']);
+    this.navCtrl.navigateForward('usabillity');
   }
   doFactory() {
     this.navCtrl.navigateForward('factory');

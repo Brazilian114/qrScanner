@@ -1,6 +1,7 @@
 ion-input{
     background-color: #FFFFFF;
     border: 1px solid #cecece;
+    font-size: 14px;
     // border-radius: 25px 25px 25px 25px;
   }
   ion-icon {
@@ -38,6 +39,9 @@ ion-input{
   .col{
     padding-top: 2px;
     padding-bottom: 2px;
+    //flex: 5;
+    width: calc(calc(2 / var(--ion-grid-columns, 12)) * 100%);
+    max-width: calc(calc(2 / var(--ion-grid-columns, 12)) * 100%);
   }
   .grid{
     padding-left: 0px;

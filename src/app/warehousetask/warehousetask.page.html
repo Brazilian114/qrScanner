@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <!-- <ion-button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </ion-button> -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/operation"></ion-back-button>
+    </ion-buttons>
     <ion-title>Warehouse Task</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -145,8 +145,19 @@
 
 
   </ion-grid>
-</ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button ion-button expand="block" color="light"(click)="doClear()">Clear</ion-button>
+      </ion-col>
 
+      <ion-col>
+        <ion-button ion-button expand="block"(click)="doConfirm(oLocation_con)">Confirm</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<!-- 
 <ion-footer>
   <ion-grid>
     <ion-row>
@@ -159,4 +170,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-footer>
+</ion-footer> -->

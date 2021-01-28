@@ -25,7 +25,7 @@ export class FactoryPage implements OnInit {
   listZone:any;
   oZone:any;
   listWarehouse:any;
-  oWarehouse:any;
+  oWarehouse:any="";
   oUsername:any;
   oDocRef:any;
   oCustomer_Header:any;
@@ -47,6 +47,7 @@ export class FactoryPage implements OnInit {
   isdisabledzone:boolean = true;
   oLine:any;
   listGrade:any;
+  data_grade:any;
   constructor(public navCtrl: NavController, private service: ServiceService, private loadingCtrl: LoadingController, private toastCtrl: ToastController
     , private modalCtrl: ModalController, private storage: Storage, public platform: Platform, private alertCtrl: AlertController) { 
       this.storage.get('_user').then((res)=>{
@@ -60,6 +61,7 @@ export class FactoryPage implements OnInit {
         console.log(this.oClient);
         //this.doGetDepartment(this.oClient)
       })
+      this.getGrade();
     }
 
   ngOnInit() {
@@ -74,6 +76,13 @@ export class FactoryPage implements OnInit {
     this.service.Get_Warehouse_Detail(oUser).then((res)=>{
       this.listWarehouse =  res;
       console.log(this.listWarehouse);
+      
+    })
+  }
+  getGrade(){
+    this.service.get_Grade().then((res)=>{
+      this.data_grade = res;
+      console.log(res);
       
     })
   }
@@ -154,6 +163,7 @@ export class FactoryPage implements OnInit {
           this.doGetWarehouse(this.oClient, this.oOrder);
           this.doClearDetail();
           this.getZone("");
+          this.getGrade();
         //  this.listdepart = data.department_code
         //  this.oHanel_no = data.order_no;
         //  this.oStatus = data.status;
@@ -207,20 +217,20 @@ export class FactoryPage implements OnInit {
         this.oWarehouse = res["0"].Warehouse["0"]
     })
   }
-  // doGetTaskOrder(oClient, oOrder_no,oWarehouse){
-  //   this.service.Outstanding_Tasks_Get_Chabaa(oClient,oOrder_no,"TZ",oWarehouse,this.oUsername).then((res)=>{
-  //   this.data_task_detail = res;
-  //     console.log(this.data_task_detail);
-  //     this.oWork = this.data_task_detail["0"].works_order["0"];
-  //   })
-  // }
   doGetTaskOrder(oClient, oOrder_no){
-    this.service.Show_TZ_HM(oClient,oOrder_no).then((res)=>{
+    this.service.Outstanding_Tasks_Get_Chabaa(oClient,oOrder_no,"TZ",this.oWarehouse,this.oUsername).then((res)=>{
     this.data_task_detail = res;
       console.log(this.data_task_detail);
       this.oWork = this.data_task_detail["0"].works_order["0"];
     })
   }
+  // doGetTaskOrder(oClient, oOrder_no){
+  //   this.service.Show_TZ_HM(oClient,oOrder_no).then((res)=>{
+  //   this.data_task_detail = res;
+  //     console.log("work",this.data_task_detail);
+  //     this.oWork = this.data_task_detail["0"].wo_number["0"];
+  //   })
+  // }
   doReturn(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit, area_from,line_no){
     console.log(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit,line_no);
     this.oTask_no = task_no;
@@ -274,7 +284,7 @@ export class FactoryPage implements OnInit {
                       this.oStatus = res["0"].status["0"];
                       this.service.Assign_Whse_Task_Manual(this.oClient, this.oOrder,"TZ",this.oUsername).then((res)=>{
                         console.log(res);
-                        if(res.length == 0){
+                        if(res["0"].sqlstatus != 0){
                           this.Alert("Error",res["0"].sqlmsg)
                         }else{
                           this.Alert("Success","success")

@@ -107,7 +107,7 @@ Get_Hanel_master() {
   return this.http.get(this.hostWebService + "/Get_Hanel_Master",{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -129,7 +129,7 @@ Get_Tranfer_Order() {
   return this.http.get(this.hostWebService + "/Get_Tranfer_Order",{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+       // console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -151,7 +151,7 @@ Get_Tranfer_Order() {
   return this.http.get(this.hostWebService + "/Get_Tranfer_Order_Ref?" + parameter,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+       // console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -173,7 +173,7 @@ Close_Hanel_Master(oClient, oHanel_no, oUsername) {
   return this.http.get(this.hostWebService + "/Close_Hanel_Master?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -195,7 +195,7 @@ Confirm_Tranfer_order(oOrder_no) {
   return this.http.get(this.hostWebService + "/Confirm_Tranfer_order?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -217,7 +217,7 @@ Get_Serail_number_detail(oOrder_no, oSerial) {
   return this.http.get(this.hostWebService + "/Get_Serail_number_detail?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+      //  console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -239,7 +239,7 @@ Get_Serail_number_detail(oOrder_no, oSerial) {
   return this.http.get(this.hostWebService + "/Get_Zone?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+       // console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -262,7 +262,7 @@ Get_Hanel_Ref(oClient) {
   return this.http.get(this.hostWebService + "/Get_Hanel_Ref?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -284,7 +284,7 @@ Get_Hanel_Master() {
   return this.http.get(this.hostWebService + "/Get_Hanel_Master",{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -307,7 +307,7 @@ Get_Hanel_Order_Ref(oWarehouse, oZone) {
   return this.http.get(this.hostWebService + "/Get_Hanel_Order_Ref?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -329,7 +329,7 @@ Get_Hanel_Order() {
   return this.http.get(this.hostWebService + "/Get_Hanel_Order",{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -352,7 +352,7 @@ Get_Department(oClient) {
   return this.http.get(this.hostWebService + "/Get_Department?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -374,7 +374,7 @@ Get_Warehouse_Detail(oUser) {
   return this.http.get(this.hostWebService + "/Get_Warehouse_Detail?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -398,7 +398,7 @@ Confirm_Hanel_master(oClient, oDepartment, oOrder_no, oReference, oOrderDate, oM
   return this.http.get(this.hostWebService + "/Confirm_Hanel_master?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -422,7 +422,7 @@ Auto_Hanel_Detail(oClient, oHanel_no, oTranfer_no, oUser, oQty) {
   return this.http.get(this.hostWebService + "/Auto_Hanel_Detail?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -445,7 +445,7 @@ Get_Hanel_detail(oClient, oOrder_no) {
   return this.http.get(this.hostWebService + "/Get_Hanel_detail?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -468,7 +468,7 @@ Check_Hanel_Status(oOrder_no) {
   return this.http.get(this.hostWebService + "/Check_Hanel_Status?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -493,7 +493,7 @@ Insert_Hanel_Detail(oClient, oOrder_no, oReferent_no, oItem_no, oSize_x, oEngine
   return this.http.get(this.hostWebService + "/Insert_Hanel_Detail?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -518,7 +518,7 @@ Insert_Keein_Gr_Loc_From(oClient, oOrder_no, oReference, oStatus, oMaker, oOrder
   return this.http.get(this.hostWebService + "/Insert_Keein_Gr_Loc_From?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -541,7 +541,7 @@ Transfer_Order_Stock_Available_Check(oClient, oOrder_no, oUser) {
   return this.http.get(this.hostWebService + "/Transfer_Order_Stock_Available_Check?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -564,7 +564,7 @@ Release_Transfer_Order(oClient, oOrder_no, oUser) {
   return this.http.get(this.hostWebService + "/Release_Transfer_Order?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -587,7 +587,7 @@ Manual_Pick_Transfer_Order(oClient, oOrder_no, oPriority, oUser) {
   return this.http.get(this.hostWebService + "/Manual_Pick_Transfer_Order?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -610,7 +610,7 @@ Assign_Whse_Task_Manual(oClient, oOrder_no, oMovement, oUser) {
   return this.http.get(this.hostWebService + "/Assign_Whse_Task_Manual?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -634,7 +634,7 @@ Outstanding_Tasks_Get_Chabaa(oClient, oOrder_no, oOrder_type, oWarehouse, oUser)
   return this.http.get(this.hostWebService + "/Outstanding_Tasks_Get_Chabaa?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -656,7 +656,7 @@ Get_Zone_By_Order(oClient, oOrder_no) {
   return this.http.get(this.hostWebService + "/Get_Zone_By_Order?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -679,7 +679,7 @@ Get_Warehouse_By_Order(oClient, oOrder_no) {
   return this.http.get(this.hostWebService + "/Get_Warehouse_By_Order?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -701,7 +701,7 @@ Get_Engine() {
   return this.http.get(this.hostWebService + "/Get_Engine",{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -724,7 +724,7 @@ Delete_Hanel_Detail(oClient, oOrder_no, oLine_no, oMaker) {
   return this.http.get(this.hostWebService + "/Delete_Hanel_Detail?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -747,7 +747,7 @@ Get_Flag_Save(oClient, oOrder_no) {
   return this.http.get(this.hostWebService + "/Get_Flag_Save?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -770,7 +770,7 @@ Seial_Save_Job(oClient, oOrder_no, oSerial, oRef_no) {
   return this.http.get(this.hostWebService + "/Seial_Save_Job?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -794,7 +794,7 @@ Outstanding_Serial_hh(oClient, oSerial, oItem_no) {
      .toPromise()
      .then(response => {
 
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
@@ -818,7 +818,7 @@ Check_Pallet_Location(oPallet, oWarehouse, oLocation, oType) {
      .toPromise()
      .then(response => {
 
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -843,7 +843,7 @@ Close_Putaway_Task_New(oWork, oTask, oActivity, oReason_code, oRemark, oLocation
      .toPromise()
      .then(response => {
 
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -868,7 +868,7 @@ Close_Pick_Task(oWork, oTask, oActivity, oQty_pick, oReason_code, oRemark, oMake
      .toPromise()
      .then(response => {
 
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -890,7 +890,7 @@ Get_Type_Order(oOrder_no) {
   return this.http.get(this.hostWebService + "/Get_Type_Order?" + parameters,{ responseType: 'text' })
      .toPromise()
      .then(response => {
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -913,7 +913,7 @@ Check_Serial_Number(oWork, oSerial, oPallet, oItem) {
      .toPromise()
      .then(response => {
 
-        console.log(response);
+        //console.log(response);
         
         let a;
         xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -936,7 +936,7 @@ Delete_Transfer_Order_Detail(oClient, oOrder_no, oLine_no, oMaker) {
       .toPromise()
       .then(response => {
  
-         console.log(response);
+         //console.log(response);
          
          let a;
          xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -959,7 +959,7 @@ Delete_Transfer_Order_Detail(oClient, oOrder_no, oLine_no, oMaker) {
       .toPromise()
       .then(response => {
  
-         console.log(response);
+         //console.log(response);
          
          let a;
          xml2js.parseString(response , { explicitArray: true }, function (err, result) {
@@ -975,5 +975,26 @@ Delete_Transfer_Order_Detail(oClient, oOrder_no, oLine_no, oMaker) {
          }
       }
       );
+ }
+ get_Grade() {
+   // let parameters='oClient='+oClient+'&oItemNo='+oItemNo;
+   return this.http.get(this.hostWebService +"/Get_Grade?",{ responseType: 'text' })
+     .toPromise()
+     .then(response =>
+        {
+           let a;
+           xml2js.parseString(response,{explicitArray:true},function (err,result) {
+           a = result;
+        });
+           try {
+               // return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table["0"];
+               return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table
+               // return a.DataTable["diffgr:diffgram"].NewDataSet.Table;
+           }
+           catch (e) {
+             return [];
+           }
+        }
+     );
  }
 }

@@ -51,8 +51,6 @@ const routes: Routes = [
     path: 'scanmodal',
     loadChildren: () => import('./scanmodal/scanmodal.module').then( m => m.ScanmodalPageModule)
   },
-
-
 ];
 
 @NgModule({

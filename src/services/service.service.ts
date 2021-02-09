@@ -15,7 +15,12 @@ export class ServiceService {
   constructor(public storage:Storage,public http:HttpClient) {
     this.storage.get('_url').then((res) => {
       this.url = res;
-      this.hostWebService = "https://" + this.url + "/RF-Service_Yasub/RFService.asmx";
+      if(this.url == undefined || this.url == "" || this.url == null){
+         this.url = "58.137.91.7"
+        this.storage.set('_url', this.url);
+      }
+      this.hostWebService = "http://" + this.url + "/RF-Service_Yasub/RFService.asmx";
+      
       // this.hostWebService = "http://58.137.91.7/RF-Service_Yasub/RFService.asmx";
    })
    }

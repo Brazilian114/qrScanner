@@ -45,16 +45,16 @@ export class WarehousetaskPage implements OnInit {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad WarehousetaskPage');
-    setTimeout(() => {
-      this.focusInputSerial.setFocus();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.focusInputSerial.setFocus();
+    // }, 1000);
 
   }
   ngOnInit() {
   }
-  doLocation() {
-    this.focusInputLocation.setFocus();
-  }
+  // doLocation() {
+  //   this.focusInputLocation.setFocus();
+  // }
   
   async doScanSerial() {
     const modal = await this.modalCtrl.create({
@@ -135,9 +135,9 @@ export class WarehousetaskPage implements OnInit {
 
         this.oType = this.data_serial["0"].movement_type;
         this.oReceipt_date = this.datepipe.transform(this.data_serial["0"].receipt_date, 'yyyy-MM-dd');
-        setTimeout(() => {
-          this.focusInputLocation.setFocus();
-        }, 500);
+        // setTimeout(() => {
+        //   this.focusInputLocation.setFocus();
+        // }, 500);
       } else {
         this.service.Outstanding_Serial_hh(this.oClient, "", oSerial).then(async(res) => {
           console.log(res);
@@ -175,9 +175,9 @@ export class WarehousetaskPage implements OnInit {
 
             this.oType = res["0"].movement_type;
             this.oReceipt_date = this.datepipe.transform(res["0"].receipt_date, 'yyyy-MM-dd');
-            setTimeout(() => {
-              this.focusInputLocation.setFocus();
-            }, 500);
+            // setTimeout(() => {
+            //   this.focusInputLocation.setFocus();
+            // }, 500);
           }else if(res.length > 1){
             const modal = await this.modalCtrl.create({
               component: "SettingPage",
@@ -223,9 +223,9 @@ export class WarehousetaskPage implements OnInit {
 
               this.oType =  modalData.data.movement_type;
               this.oReceipt_date = this.datepipe.transform( modalData.data.receipt_date, 'yyyy-MM-dd');
-              setTimeout(() => {
-                this.focusInputLocation.setFocus();
-              }, 500);
+              // setTimeout(() => {
+              //   this.focusInputLocation.setFocus();
+              // }, 500);
               
               // })
           }else{
@@ -385,9 +385,9 @@ export class WarehousetaskPage implements OnInit {
 
     this.oType = "";
     this.oReceipt_date = "";
-    setTimeout(() => {
-      this.focusInputSerial.setFocus();
-    }, 500);
+    // setTimeout(() => {
+    //   this.focusInputSerial.setFocus();
+    // }, 500);
   }
   close_task() {
 

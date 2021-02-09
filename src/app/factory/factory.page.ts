@@ -336,7 +336,7 @@ export class FactoryPage implements OnInit {
   async doDeleteLine(){
     if(this.oOrder == "" || this.oOrder == undefined){
       this.Alert("Message","กรุณาระบุเลขเอกสาร");
-    }else if(this.oLine == "" || this.oLine == undefined){
+    }else if(this.oTask_no == "" || this.oTask_no == undefined){
       this.Alert("Message","กรุณาระบุ Line");
     }else{
       let alert = await this.alertCtrl.create({
@@ -352,7 +352,7 @@ export class FactoryPage implements OnInit {
             text: 'ตกลง',
             handler: data => {
   
-              this.service.Delete_Transfer_Order_Detail(this.oClient,this.oOrder,this.oLine,this.oUsername).then((res)=>{
+              this.service.Delete_Transfer_Order_Detail(this.oClient,this.oOrder,this.oTask_no,this.oUsername).then((res)=>{
                 console.log(res);
                 if(res[0].sqlstatus != 0){
                   this.Alert("Error",res["0"].sqlmsg);

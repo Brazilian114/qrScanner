@@ -45,7 +45,12 @@ export class LoginPage implements OnInit {
     this.storage.get('_url').then((res) => {
       this.url = res;
       console.log(res);
-      
+      if(this.url == undefined || this.url == "" || this.url == null){
+         this.url = "58.137.91.7"
+        this.storage.set('_url', this.url);
+      }else{
+        this.url = this.url;
+      }
     // alert(this.url)
       if (this.url != null) {
         console.log(this.url);

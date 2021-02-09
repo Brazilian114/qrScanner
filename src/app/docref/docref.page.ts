@@ -70,7 +70,7 @@ export class DocrefPage implements OnInit {
   
   doGetHanelOrderRef(oWarehouse, oZone) {
     this.service.Get_Hanel_Order_Ref(oWarehouse, oZone).then((res) => {
-      console.log(res);
+      console.log("1",res);
       this.data_order_docref = res;
       this.initializeItems();
     })
@@ -78,7 +78,7 @@ export class DocrefPage implements OnInit {
 
   doGetHanelRef(oClient) {
     this.service.Get_Hanel_Ref(oClient).then((res) => {
-      console.log(res);
+      console.log("2",res);
       this.data_docref = res;
       this.initializeItems();
     })

@@ -182,6 +182,7 @@ export class UsabillityPage{
      this.oOrder = "";
      this.listengine = "";
      this.oRemark = "";
+     this.oQty_use_head = "";
       // this.oCustomer_Header = "";
       if(this.oOrder !== ''){
         //enable the button
@@ -337,6 +338,10 @@ export class UsabillityPage{
         console.log(res);
         this.data_hanel = res;
         this.oTotal = this.data_hanel.length
+        if(this.data_hanel.length > 0){
+          this.oQty_use_head = parseInt(this.data_hanel[0].qty_use[0])
+        }
+        
     })
     this.Get_Flag_Save(this.oClient, this.oHanel_no);
   }
@@ -398,7 +403,7 @@ export class UsabillityPage{
         this.oQty_balance = qty_balance;
         this.oQty = qty;
         this.oSerial_no = serial_no;
-        //this.oQty_use = qty_use
+        this.oQty_use = qty_use
       setTimeout(() => {
         this.focusInputQty.setFocus();
       }, 1000);
@@ -437,6 +442,7 @@ export class UsabillityPage{
       this.oQty = "";
       this.oSerial_no = "";
       this.oQty_use = "";
+      this.oQty_use_head = "";
       setTimeout(() => {
         this.focusInputSerial.setFocus();
       }, 1000);

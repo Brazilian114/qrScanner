@@ -112,13 +112,13 @@
         </ion-row>
         <br>
         <div scrollX="true" scrollY="true">
-          <ion-row style="width: 1000px;" *ngFor = "let details of data_task_detail; let i = index" (click)="doReturn(details.task_no, details.serial_number, details.item_no, details.description, details.grade, details.warehouse, details.location_from, details.location_to, details.loose_qty, details.print_unit, details.area_from, details.line_no)">
+          <ion-row style="width: 1000px;" *ngFor = "let details of data_task_detail; let i = index" (click)="doReturn(details.line_no, details.serial, details.item_no, details.description, details.grade, details.warehouse, details.location_picked, details.loc_des, details.qty, details.print_unit, details.zone_des, details.line_no)">
             <ion-col class="border-col" size=auto>
               <ion-row class="border-row" style="width:30px;" *ngIf = "i == 0">
                 #
               </ion-row>
               <ion-row style="width:30px;">
-                {{details.task_no}}
+                {{details.line_no}}
               </ion-row>
             </ion-col>
             <!-- <ion-col class="border-col">
@@ -158,7 +158,7 @@
                 Qty
               </ion-row>
               <ion-row>
-                {{details.loose_qty}}
+                {{details.qty}}
               </ion-row>
             </ion-col>
             <ion-col class="border-col">
@@ -166,7 +166,7 @@
                 Uom
               </ion-row>
               <ion-row>
-                {{details.loose_uom}}
+                {{details.uom}}
               </ion-row>
             </ion-col>
             <ion-col class="border-col">

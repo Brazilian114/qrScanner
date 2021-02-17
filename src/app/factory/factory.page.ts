@@ -217,20 +217,20 @@ export class FactoryPage implements OnInit {
         this.oWarehouse = res["0"].Warehouse["0"]
     })
   }
-  doGetTaskOrder(oClient, oOrder_no){
-    this.service.Outstanding_Tasks_Get_Chabaa(oClient,oOrder_no,"TZ",this.oWarehouse,this.oUsername).then((res)=>{
-    this.data_task_detail = res;
-      console.log(this.data_task_detail);
-      this.oWork = this.data_task_detail["0"].works_order["0"];
-    })
-  }
   // doGetTaskOrder(oClient, oOrder_no){
-  //   this.service.Show_TZ_HM(oClient,oOrder_no).then((res)=>{
+  //   this.service.Outstanding_Tasks_Get_Chabaa(oClient,oOrder_no,"TZ",this.oWarehouse,this.oUsername).then((res)=>{
   //   this.data_task_detail = res;
-  //     console.log("work",this.data_task_detail);
-  //     this.oWork = this.data_task_detail["0"].wo_number["0"];
+  //     console.log(this.data_task_detail);
+  //     this.oWork = this.data_task_detail["0"].works_order["0"];
   //   })
   // }
+  doGetTaskOrder(oClient, oOrder_no){
+    this.service.Show_TZ_HM(oClient,oOrder_no).then((res)=>{
+    this.data_task_detail = res;
+      console.log("work",this.data_task_detail);
+      this.oWork = this.data_task_detail["0"].wo_number["0"];
+    })
+  }
   doReturn(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit, area_from,line_no){
     console.log(task_no, serial_no, item_no, description, grade, warehouse, location_form, location_to, ppq_qty, print_unit,line_no);
     this.oTask_no = task_no;
@@ -287,6 +287,7 @@ export class FactoryPage implements OnInit {
                         if(res["0"].sqlstatus != 0){
                           this.Alert("Error",res["0"].sqlmsg)
                         }else{
+                          this.oWork = res[0].wo_number[0];
                           this.Alert("Success","success")
                           this.doGetTaskOrder(oClient, this.oOrder)
                         }
@@ -319,12 +320,49 @@ export class FactoryPage implements OnInit {
       if(this.oOrder == undefined){
         this.oOrder = "";
       }
-      this.service.Insert_Keein_Gr_Loc_From(this.oClient,this.oOrder,this.oDocRef,"DATA ENTRY",this.oUsername,this.oDate,this.oZone,this.oWarehouse).then((res)=>{
+      this.service.Insert_Keein_Gr_Loc_From(this.oClient,this.oOrder,this.oDocRef,"DATA ENTRY",this.oUsername,this.oDate,this.oZone,this.oWarehouse).then(async(res)=>{
         console.log(res);
+        this.oOrder = res["0"].order_no["0"];
         if(res["0"].sql_status == 0){
           this.oOrder = res["0"].order_no["0"];
           this.Alert("Success","success")
           this.doGetTaskOrder(oClient, this.oOrder)
+          // this.oOrder = res[0].
+        }else if(res["0"].sql_status[0] == -50222){
+          let alert = await this.alertCtrl.create({
+            header: "Error",
+            message: res["0"].sql_message,
+            buttons: [{
+                text: 'ตกลง',
+                handler: async data => {
+                  let alert2 = await this.alertCtrl.create({
+                    header: "Warning",
+                    message: "คุณต้องการที่จะปิดเอกสารนี้หรือไม่",
+                    buttons: [ {
+                        text: 'ตกลง',
+                        handler: data => {
+                          this.service.Close_Keepin_Outstock(this.oClient,this.oOrder,this.oUsername).then((res)=>{
+                              console.log(res);
+                              if(res["0"].sql_status != 0){
+                                this.Alert("Error",res["0"].sql_message)
+                              }else{
+                                this.doClearHeader();
+                              }
+                          })
+                        }
+                      },
+                      {
+                        text: 'ยกเลิก',
+                        handler: data => {
+              
+                        }
+                      }]
+                  });
+                  alert2.present();
+                }
+              }]
+          });
+ alert.present();
         }else{
           console.log("Error");
           this.Alert("Error",res["0"].sql_message)

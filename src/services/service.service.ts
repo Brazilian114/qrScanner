@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import * as xml2js from "xml2js"
 import { Storage } from '@ionic/storage';
+
 // import { Observable } from 'rxjs/Observable';
 // import { Storage } from '@ionic/storage';
 @Injectable({
@@ -12,7 +13,7 @@ export class ServiceService {
   public WebServiceUploadPic: string;
   url: string;
   unitsInfo
-  constructor(public storage:Storage,public http:HttpClient) {
+  constructor(public storage:Storage,public http:HttpClient, ) {
     this.storage.get('_url').then((res) => {
       this.url = res;
       if(this.url == undefined || this.url == "" || this.url == null){
@@ -50,6 +51,7 @@ export class ServiceService {
        );
  }
  get_login(Username, Password) {
+   
   let parameters = 'oUsername=' + Username + '&oPassword=' + Password;
   return this.http.get(this.hostWebService + "/Check_Login?" + parameters,{ responseType: 'text' })
      .toPromise()
@@ -540,6 +542,28 @@ Insert_Keein_Gr_Loc_From(oClient, oOrder_no, oReference, oStatus, oMaker, oOrder
      }
      );
 }
+Close_Keepin_Outstock(oClient, oOrder_no, oUser) {
+   let parameters = 'oClient=' + oClient + '&oOrder_no=' + oOrder_no+ '&oUser=' + oUser;
+   return this.http.get(this.hostWebService + "/Close_Keepin_Outstock?" + parameters,{ responseType: 'text' })
+      .toPromise()
+      .then(response => {
+         //console.log(response);
+         
+         let a;
+         xml2js.parseString(response, { explicitArray: true }, function (err, result) {
+            a = result;
+         });
+         try {
+            // return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table["0"];
+            return a.DataTable["diffgr:diffgram"]["0"].NewDataSet["0"].Table
+            // return a.DataTable["diffgr:diffgram"].NewDataSet.Table;
+         }
+         catch (e) {
+            return [];
+         }
+      }
+      );
+ }
 
 Transfer_Order_Stock_Available_Check(oClient, oOrder_no, oUser) {
   let parameters = 'oClient=' + oClient + '&oOrder_no=' + oOrder_no+ '&oUser=' + oUser;

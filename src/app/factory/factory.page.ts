@@ -329,6 +329,7 @@ export class FactoryPage implements OnInit {
           this.doGetTaskOrder(oClient, this.oOrder)
           // this.oOrder = res[0].
         }else if(res["0"].sql_status[0] == -50222){
+          this.data_task_detail = [];
           let alert = await this.alertCtrl.create({
             header: "Error",
             message: res["0"].sql_message,
@@ -365,6 +366,7 @@ export class FactoryPage implements OnInit {
  alert.present();
         }else{
           console.log("Error");
+          this.data_task_detail = [];
           this.Alert("Error",res["0"].sql_message)
          // console.log(res);
         }
